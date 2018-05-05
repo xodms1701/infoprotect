@@ -1,0 +1,9 @@
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\bin\Debug\정보보호.exe.config
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\bin\Debug\정보보호.exe
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\bin\Debug\정보보호.pdb
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\obj\Debug\정보보호.csprojResolveAssemblyReference.cache
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\obj\Debug\정보보호.Form1.resources
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\obj\Debug\정보보호.Properties.Resources.resources
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\obj\Debug\정보보호.csproj.GenerateResource.Cache
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\obj\Debug\정보보호.exe
+C:\Users\Hansung\Desktop\모음\infoprotect\정보보호\obj\Debug\정보보호.pdb
