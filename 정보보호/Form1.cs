@@ -44,7 +44,7 @@ namespace 정보보호
                 tContext.Text = "";
                 return;
             }
-            eng.init(Key);
+            eng.init(Key, Context);
         }
     }
 }
