@@ -61,23 +61,9 @@ namespace 정보보호
             }
 
             //평문을 2차원 배열로 만들기
-            for(int i=0; ;i+=2)
-            {
-                if (Context[i] == Context[i + 1])
-                {
-                    dContext.Add(Context[i] + "X");
-                    i--;
-                }
-                else if(Context.Length-1 == i)
-                {
-                    dContext.Add(Context[i] + "X");
-                    break;
-                }
-                else
-                {
-                    dContext.Add(Context[i].ToString() + Context[i+1].ToString());
-                }
-            }
+           
+
+           
 
         }
     }
