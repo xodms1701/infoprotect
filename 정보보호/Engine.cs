@@ -23,7 +23,7 @@ namespace 정보보호
             //평문 정렬하기
             Etheorem(Context);
             //입력받은 평문을 암호화 하기
-            encryption(ref Context);
+            encryption(1);
         }
 
         internal void Binit(String key, String Context)
@@ -37,7 +37,7 @@ namespace 정보보호
             //평문 정렬하기
             Btheorem(Context);
             //입력받은 평문을 복호화 하기
-            encryption(ref Context);
+            encryption(2);
         }
 
         internal void Deduplication(ref String key)
@@ -47,7 +47,14 @@ namespace 정보보호
             char[] tKey = key.ToArray();
             for (int i = 0; i < tKey.Length; i++)
             {
-                dKey.Add(tKey[i]);
+                if (tKey[i] == 'z')
+                {
+                    dKey.Add('q');
+                }
+                else
+                {
+                    dKey.Add(tKey[i]);
+                }
             }
 
             //list에 나머지 문자들 넣기
@@ -114,7 +121,7 @@ namespace 정보보호
                 dContext[i, 1] = Context[i * 2 + 1];
             }
         }
-        internal void encryption(ref string Context)
+        internal void encryption(int temp)
         {
             int cnt = 0;
             
@@ -144,20 +151,12 @@ namespace 정보보호
                         }
                     }
                 }
-                if (fx == sx)
+                if (temp == 1)
                 {
-                    result += cryptogram[fx, fy + 1].ToString();
-                    result += cryptogram[sx, sy + 1].ToString();
-                }
-                else if (fy == sy)
+                    Einsertion(ref fx, ref fy, ref sx, ref sy);
+                }else
                 {
-                    result += cryptogram[fx + 1, fy].ToString();
-                    result += cryptogram[sx + 1, sy].ToString();
-                }
-                else
-                {
-                    result += cryptogram[sx, fy].ToString();
-                    result += cryptogram[fx, sy].ToString();
+                    Binsertion(ref fx, ref fy, ref sx, ref sy);
                 }
                 cnt++;
                 fx = 0;
@@ -169,6 +168,98 @@ namespace 정보보호
         internal String GetContext()
         {
             return result;
+        }
+        internal void Einsertion(ref int fx, ref int fy, ref int sx, ref int sy)
+        {
+            if (fx == sx)
+            {
+                if (fy == 4)
+                {
+                    result += cryptogram[fx, 0].ToString();
+                    result += cryptogram[sx, sy + 1].ToString();
+                }
+                else if(sy==4)
+                {
+                    result += cryptogram[fx, fy + 1].ToString();
+                    result += cryptogram[sx, 0].ToString();
+                }else
+                {
+                    result += cryptogram[fx, fy + 1].ToString();
+                    result += cryptogram[sx, sy + 1].ToString();
+                }
+            }
+            else if (fy == sy)
+            {
+                if (fx == 4)
+                {
+                    result += cryptogram[0, fy].ToString();
+                    result += cryptogram[sx + 1, sy].ToString();
+                }
+                else if (sx == 4)
+                {
+                    result += cryptogram[fx + 1, fy].ToString();
+                    result += cryptogram[0, sy].ToString();
+                }
+                else
+                {
+                    result += cryptogram[fx + 1, fy].ToString();
+                    result += cryptogram[sx + 1, sy].ToString();
+                }
+            }
+            else
+            {
+                result += cryptogram[sx, fy].ToString();
+                result += cryptogram[fx, sy].ToString();
+            }
+        }
+
+        internal void Binsertion(ref int fx, ref int fy, ref int sx, ref int sy)
+        {
+            if (fx == sx)
+            {
+                if (fy == 0)
+                {
+                    result += cryptogram[fx, 4].ToString();
+                    result += cryptogram[sx, sy - 1].ToString();
+                }
+                else if (sy == 0)
+                {
+                    result += cryptogram[fx, fy - 1].ToString();
+                    result += cryptogram[sx, 4].ToString();
+                }
+                else
+                {
+                    result += cryptogram[fx, fy - 1].ToString();
+                    result += cryptogram[sx, sy - 1].ToString();
+                }
+            }
+            else if (fy == sy)
+            {
+                if (fx == 0)
+                {
+                    result += cryptogram[4, fy].ToString();
+                    result += cryptogram[sx - 1, sy].ToString();
+                }
+                else if(sx == 0)
+                {
+                    result += cryptogram[fx - 1, fy].ToString();
+                    result += cryptogram[4, sy].ToString();
+                }
+                else
+                {
+                    result += cryptogram[fx - 1, fy].ToString();
+                    result += cryptogram[sx - 1, sy].ToString();
+                }
+            }
+            else
+            {
+                result += cryptogram[sx, fy].ToString();
+                result += cryptogram[fx, sy].ToString();
+            }
+        }
+        internal void RemoveResult()
+        {
+            result = "";
         }
     }
 }

@@ -22,6 +22,7 @@ namespace 정보보호
 
         private void button1_Click(object sender, EventArgs e)
         {
+            resultLable.Text = "";
             String Key = "";
             String Context = "";
             try
@@ -46,10 +47,13 @@ namespace 정보보호
             }
             eng.Einit(Key, Context);
             resultLable.Text = eng.GetContext();
+            eng.RemoveResult();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            resultLable.Text = "";
             String Key = "";
             String Context = "";
             try
@@ -74,6 +78,7 @@ namespace 정보보호
             }
             eng.Binit(Key, Context);
             resultLable.Text = eng.GetContext();
+            eng.RemoveResult();
         }
     }
 }
