@@ -44,7 +44,36 @@ namespace 정보보호
                 tContext.Text = "";
                 return;
             }
-            eng.init(Key, Context);
+            eng.Einit(Key, Context);
+            resultLable.Text = eng.GetContext();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            String Key = "";
+            String Context = "";
+            try
+            {
+                Key = tKey.Text;
+            }
+            catch
+            {
+                MessageBox.Show("키가 이상합니다.");
+                tKey.Text = "";
+                return;
+            }
+            try
+            {
+                Context = tContext.Text;
+            }
+            catch
+            {
+                MessageBox.Show("평문이 이상합니다.");
+                tContext.Text = "";
+                return;
+            }
+            eng.Binit(Key, Context);
+            resultLable.Text = eng.GetContext();
         }
     }
 }
