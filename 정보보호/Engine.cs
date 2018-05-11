@@ -43,6 +43,7 @@ namespace 정보보호
         internal void Deduplication(ref String key)
         {
             List<char> dKey = new List<char>();
+            key = key.ToLower();
             //key를 list에 넣기
             char[] tKey = key.ToArray();
             for (int i = 0; i < tKey.Length; i++)
@@ -86,6 +87,7 @@ namespace 정보보호
         }
         internal void Etheorem(String Context)
         {
+            Context = Context.ToLower();
             //평문 정렬 하기
             for (int i = 0; i < Context.Length; i += 2)
             {
@@ -114,6 +116,7 @@ namespace 정보보호
         }
         internal void Btheorem(String Context)
         {
+            Context = Context.ToLower();
             dContext = new char[Context.Length / 2, 2];
             for (int i = 0; i < Context.Length / 2; i++)
             {
