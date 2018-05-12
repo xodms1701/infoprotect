@@ -89,20 +89,21 @@ namespace 정보보호
         {
             Context = Context.ToLower();
             //평문 정렬 하기
-            for (int i = 0; i < Context.Length; i += 2)
+            if (Context.Length % 2 == 1)
             {
-                if (Context[i] == Context[i + 1])
+                Context += "x";
+            }
+            for (int i = 0; i < Context.Length / 2; i++)
+            {
+                if (Context[i * 2] == Context[i * 2 + 1])
                 {
-                    tContext += Context[i].ToString() + "x" + Context[i + 1].ToString();
+                    tContext += Context[i * 2].ToString() + "x" + Context[i * 2 + 1].ToString();
                 }
                 else
                 {
-                    tContext += Context[i].ToString() + Context[i + 1].ToString();
+                    tContext += Context[i * 2].ToString() + Context[i * 2 + 1].ToString();
                 }
-            }
-            if (tContext.Length % 2 == 1)
-            {
-                tContext += "x";
+
             }
             //평문을 2차원 배열로 만들기
             dContext = new char[tContext.Length / 2, 2];
@@ -127,7 +128,7 @@ namespace 정보보호
         internal void encryption(int temp)
         {
             int cnt = 0;
-            
+
             //암호문으로 평문 암호화하기
             int fx = 0, fy = 0, sx = 0, sy = 0;
             while (cnt < dContext.Length / 2)
@@ -157,7 +158,8 @@ namespace 정보보호
                 if (temp == 1)
                 {
                     Einsertion(ref fx, ref fy, ref sx, ref sy);
-                }else
+                }
+                else
                 {
                     Binsertion(ref fx, ref fy, ref sx, ref sy);
                 }
@@ -181,11 +183,12 @@ namespace 정보보호
                     result += cryptogram[fx, 0].ToString();
                     result += cryptogram[sx, sy + 1].ToString();
                 }
-                else if(sy==4)
+                else if (sy == 4)
                 {
                     result += cryptogram[fx, fy + 1].ToString();
                     result += cryptogram[sx, 0].ToString();
-                }else
+                }
+                else
                 {
                     result += cryptogram[fx, fy + 1].ToString();
                     result += cryptogram[sx, sy + 1].ToString();
@@ -243,7 +246,7 @@ namespace 정보보호
                     result += cryptogram[4, fy].ToString();
                     result += cryptogram[sx - 1, sy].ToString();
                 }
-                else if(sx == 0)
+                else if (sx == 0)
                 {
                     result += cryptogram[fx - 1, fy].ToString();
                     result += cryptogram[4, sy].ToString();
@@ -262,6 +265,8 @@ namespace 정보보호
         }
         internal void RemoveResult()
         {
+            Array.Clear(dContext, 0, dContext.Length);
+            tContext = "";
             result = "";
         }
     }
